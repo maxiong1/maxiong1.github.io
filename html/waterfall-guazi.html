@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        window.viewportWidth = 750;
+        var DOMRectFuc = e => {
+            // 返回当前元素的的大小与距离视口的位置信息
+            // 我们只需要它的高度与宽度
+            const DOMRect = unref(e);
+            if(DOMRect && DOMRect.getBoundingClientRect){
+                return DOMRect.getBoundingClientRect()
+            }
+            return {
+                width: 0,
+                height: 0
+            }
+        };
+        // 通过设计稿的尺寸计算出vw，是px转vw的公式
+        const ro = e => (e / document.documentElement.getBoundingClientRect().width * 100).toFixed(5);
+        // 适配计算,设计稿间距与屏幕间距适配
+        const co = e => {
+            return e / window.viewportWidth * document.documentElement.getBoundingClientRect().width;
+        };
+        const { createApp, ref, reactive, defineProps, watch, nextTick, onMounted, normalizeStyle, computed, unref } = Vue
+        const app = createApp({
+            template: `<div>
+                <waterfall11 />
+            </div>`
+        });
+        app.component('waterfall11',{
+            setup(){
+                const list1 = ref([
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "大众 朗逸 2019款 280TSI DSG舒适版 国VI 石家庄网约优选口碑榜第1名",
+                "clue_id": "136480068",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x8e0028dc9fbb4e72897a97cf5f875f311719811968.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "6.54万",
+                "priceObj": {
+                    "priceString": "6.54万",
+                    "value": "6.54",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.65万",
+                "firstPay": {
+                    "priceString": "首付0.65万",
+                    "value": "0.65",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136480068&hideTitlebar=1&h5Ready=1",
+                "name": "大众 朗逸 2019款 280TSI DSG舒适版 国VI",
+                "trackingPrice": 65400,
+                "storeId": 2014799,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄网约优选口碑榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1066x65592ea22e754d5bb9e406eee2270a761714285651.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 473,
+                        "text": "官方评分4.8"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.6\",\"carscores\":\"4.8\",\"carid\":\"136480068\",\"costscores\":\"4.8\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "别克 2021款 昂科威Plus 652T 五座四驱豪华型 石家庄多代同堂销量榜第1名 五座四驱豪华型",
+                "clue_id": "138073947",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7963x44b5b5324444422d823121e0f2b17c9f1724561601.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "15.45万",
+                "priceObj": {
+                    "priceString": "15.45万",
+                    "value": "15.45",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.55万",
+                "firstPay": {
+                    "priceString": "首付1.55万",
+                    "value": "1.55",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=138073947&hideTitlebar=1&h5Ready=1",
+                "name": "别克 2021款 昂科威Plus 652T 五座四驱豪华型",
+                "trackingPrice": 154500,
+                "storeId": 2039022,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄多代同堂销量榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1712902833bc2ec0ff10d8497388fe5e8986f8e8561066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 468,
+                        "text": "官方评分4.4"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.8\",\"carscores\":\"4.4\",\"carid\":\"138073947\",\"costscores\":\"4.9\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "大众 途昂 2020款 380TSI 四驱豪华版 国VI 四驱豪华版四驱豪华版四驱豪华版",
+                "clue_id": "138512994",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7964x144e7e72784f4f109dea88127800a5021725351589.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "19.10万",
+                "priceObj": {
+                    "priceString": "19.10万",
+                    "value": "19.10",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.91万",
+                "firstPay": {
+                    "priceString": "首付1.91万",
+                    "value": "1.91",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=138512994&hideTitlebar=1&h5Ready=1",
+                "name": "大众 途昂 2020款 380TSI 四驱豪华版 国VI",
+                "trackingPrice": 191000,
+                "storeId": 2034655,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄多代同堂口碑榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.7\",\"carscores\":\"4.7\",\"carid\":\"138512994\",\"costscores\":\"4.9\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "奔驰E级 2015款 改款 E 260 L 运动型 石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名",
+                "clue_id": "136252077",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x41477b1043484825ab3c5c67a1ceee041722157713.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "10.35万",
+                "priceObj": {
+                    "priceString": "10.35万",
+                    "value": "10.35",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.04万",
+                "firstPay": {
+                    "priceString": "首付1.04万",
+                    "value": "1.04",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136252077&hideTitlebar=1&h5Ready=1",
+                "name": "奔驰E级 2015款 改款 E 260 L 运动型",
+                "trackingPrice": 103500,
+                "storeId": 2025871,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄安全性高销量榜第4名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"3.9\",\"carscores\":\"4.7\",\"carid\":\"136252077\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "本田 冠道 2017款 240TURBO 两驱豪华版",
+                "clue_id": "138545673",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xeb67d4235bb944f396bcfe92a6c497291725425191.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "11.03万",
+                "priceObj": {
+                    "priceString": "11.03万",
+                    "value": "11.03",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.10万",
+                "firstPay": {
+                    "priceString": "首付1.10万",
+                    "value": "1.10",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=138545673&hideTitlebar=1&h5Ready=1",
+                "name": "本田 冠道 2017款 240TURBO 两驱豪华版",
+                "trackingPrice": 110300,
+                "storeId": 2013847,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.6\",\"carscores\":\"4.7\",\"carid\":\"138545673\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "大众 朗逸 2017款 1.6L 自动风尚版",
+                "clue_id": "134788523",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x150c35416f8142919069b734c6011b871715012317.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "4.74万",
+                "priceObj": {
+                    "priceString": "4.74万",
+                    "value": "4.74",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.47万",
+                "firstPay": {
+                    "priceString": "首付0.47万",
+                    "value": "0.47",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=134788523&hideTitlebar=1&h5Ready=1",
+                "name": "大众 朗逸 2017款 1.6L 自动风尚版",
+                "trackingPrice": 47400,
+                "storeId": 2037830,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄网约优选口碑榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17129029324516c5db86f840ba9c9e1f1d1eb1bc881066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 456,
+                        "text": "官方评分3.2"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"3.4\",\"carscores\":\"3.2\",\"carid\":\"134788523\",\"costscores\":\"3.9\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "本田XR-V 2019款 1.5L CVT经典版 国V",
+                "clue_id": "137268290",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x9ae333bb20a8419dbbf32174dd25e7ec1722161490.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "7.87万",
+                "priceObj": {
+                    "priceString": "7.87万",
+                    "value": "7.87",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.79万",
+                "firstPay": {
+                    "priceString": "首付0.79万",
+                    "value": "0.79",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137268290&hideTitlebar=1&h5Ready=1",
+                "name": "本田XR-V 2019款 1.5L CVT经典版 国V",
+                "trackingPrice": 78700,
+                "storeId": 2008555,
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1066x33da2a252a2049aca80e86fe43bd9fe51714285651.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 472,
+                        "text": "官方评分4.9"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"5.0\",\"carscores\":\"4.9\",\"carid\":\"137268290\",\"costscores\":\"4.8\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "路虎 发现神行 2016款 2.0T S",
+                "clue_id": "136653851",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x6f7d0b33bd244e53a382dcf1997354db1720333909.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "9.05万",
+                "priceObj": {
+                    "priceString": "9.05万",
+                    "value": "9.05",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.91万",
+                "firstPay": {
+                    "priceString": "首付0.91万",
+                    "value": "0.91",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136653851&hideTitlebar=1&h5Ready=1",
+                "name": "路虎 发现神行 2016款 2.0T S",
+                "trackingPrice": 90500,
+                "storeId": 2068680,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"3.9\",\"carscores\":\"4.7\",\"carid\":\"136653851\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "宝马3系 2020款 325Li M运动套装",
+                "clue_id": "134538521",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xd0215ed4480b46b4861c0dca10affbf61714191043.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "19.47万",
+                "priceObj": {
+                    "priceString": "19.47万",
+                    "value": "19.47",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.95万",
+                "firstPay": {
+                    "priceString": "首付1.95万",
+                    "value": "1.95",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=134538521&hideTitlebar=1&h5Ready=1",
+                "name": "宝马3系 2020款 325Li M运动套装",
+                "trackingPrice": 194700,
+                "storeId": 2046028,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄BBA销量榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1066x33da2a252a2049aca80e86fe43bd9fe51714285651.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 472,
+                        "text": "官方评分4.9"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.5\",\"carscores\":\"4.9\",\"carid\":\"134538521\",\"costscores\":\"4.6\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "北京BJ40 2018款 PLUS 2.3T 自动四驱旗舰版 国V",
+                "clue_id": "126942180",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp16892193902f37b61ea6904480baf7fbad84cddd1b7206.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "10.45万",
+                "priceObj": {
+                    "priceString": "10.45万",
+                    "value": "10.45",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.05万",
+                "firstPay": {
+                    "priceString": "首付1.05万",
+                    "value": "1.05",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=126942180&hideTitlebar=1&h5Ready=1",
+                "name": "北京BJ40 2018款 PLUS 2.3T 自动四驱旗舰版 国V",
+                "trackingPrice": 104500,
+                "storeId": 2023252,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄硬派越野销量榜第1名"
+                    }
+                ],
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1712902932a524e9fa56164ca2aec3fbfe099e93e91066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 461,
+                        "text": "官方评分3.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.6\",\"carscores\":\"3.7\",\"carid\":\"126942180\",\"costscores\":\"3.7\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "日产NV200 2016款 改款 1.6L CVT豪华型",
+                "clue_id": "137586844",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x41a7600b63cf4714bf7c3c0cf80b481f1723024100.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "6.84万",
+                "priceObj": {
+                    "priceString": "6.84万",
+                    "value": "6.84",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.68万",
+                "firstPay": {
+                    "priceString": "首付0.68万",
+                    "value": "0.68",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137586844&hideTitlebar=1&h5Ready=1",
+                "name": "日产NV200 2016款 改款 1.6L CVT豪华型",
+                "trackingPrice": 68400,
+                "storeId": 2032865,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄拉人拉货保值榜第1名"
+                    }
+                ],
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17129029322f0e93f3efb9469d813d6baf2d2981b21066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 463,
+                        "text": "官方评分3.9"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"3.5\",\"carscores\":\"3.9\",\"carid\":\"137586844\",\"costscores\":\"4.6\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "宝马3系GT 2019款 320i 时尚型 石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名",
+                "clue_id": "137735314",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x2be072aeef5c42c793387c3f7ca261d81723460243.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "13.24万",
+                "priceObj": {
+                    "priceString": "13.24万",
+                    "value": "13.24",
+                    "unit": "万"
+                },
+                "first_pay": "首付1.32万",
+                "firstPay": {
+                    "priceString": "首付1.32万",
+                    "value": "1.32",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137735314&hideTitlebar=1&h5Ready=1",
+                "name": "宝马3系GT 2019款 320i 时尚型",
+                "trackingPrice": 132400,
+                "storeId": 2018022,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.1\",\"carscores\":\"4.7\",\"carid\":\"137735314\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "本田 飞度 2020款 1.5L CVT舒适版 石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名石家庄多代同堂口碑榜第1名",
+                "clue_id": "137389181",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x7f0be88b6c5b455da4400d70d2d4d3111722477531.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "5.11万",
+                "priceObj": {
+                    "priceString": "5.11万",
+                    "value": "5.11",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.51万",
+                "firstPay": {
+                    "priceString": "首付0.51万",
+                    "value": "0.51",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137389181&hideTitlebar=1&h5Ready=1",
+                "name": "本田 飞度 2020款 1.5L CVT舒适版",
+                "trackingPrice": 51100,
+                "storeId": 2067912,
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 132,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713841409d522e0f47e4d4f6d8eaa4fdb1d366aa51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "63-2",
+                        "id": 170,
+                        "text": "直播带看:可带看-首页A、C"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp171290293222d1c286285a46eb91eae01e1f391a1e1066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 466,
+                        "text": "官方评分4.2"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.8\",\"carscores\":\"4.2\",\"carid\":\"137389181\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "马自达3 昂克赛拉 2014款 三厢 1.5L 自动尊贵型",
+                "clue_id": "137366190",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xe1461297a52c4d0384b60e2efe4c869b1722493493.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "5.05万",
+                "priceObj": {
+                    "priceString": "5.05万",
+                    "value": "5.05",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.51万",
+                "firstPay": {
+                    "priceString": "首付0.51万",
+                    "value": "0.51",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137366190&hideTitlebar=1&h5Ready=1",
+                "name": "马自达3 昂克赛拉 2014款 三厢 1.5L 自动尊贵型",
+                "trackingPrice": 50500,
+                "storeId": 2048039,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp171290293222d1c286285a46eb91eae01e1f391a1e1066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 466,
+                        "text": "官方评分4.2"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.0\",\"carscores\":\"4.2\",\"carid\":\"137366190\",\"costscores\":\"4.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "日产 蓝鸟 2018款 1.6L CVT智酷潮音版",
+                "clue_id": "136746472",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206x68f220255631445b86fbac6dd4add3ca1720604650.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "6.19万",
+                "priceObj": {
+                    "priceString": "6.19万",
+                    "value": "6.19",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.62万",
+                "firstPay": {
+                    "priceString": "首付0.62万",
+                    "value": "0.62",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136746472&hideTitlebar=1&h5Ready=1",
+                "name": "日产 蓝鸟 2018款 1.6L CVT智酷潮音版",
+                "trackingPrice": 61900,
+                "storeId": 2067662,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1712902932f5fe13490be141a38c4ccc54ccca28821066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 455,
+                        "text": "官方评分3.1"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.2\",\"carscores\":\"3.1\",\"carid\":\"136746472\",\"costscores\":\"3.2\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "宝马1系 2020款 120i M运动套装",
+                "clue_id": "137244215",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xb41ea44f782947dca90b481cb2752bcd1722129963.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "8.55万",
+                "priceObj": {
+                    "priceString": "8.55万",
+                    "value": "8.55",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.86万",
+                "firstPay": {
+                    "priceString": "首付0.86万",
+                    "value": "0.86",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137244215&hideTitlebar=1&h5Ready=1",
+                "name": "宝马1系 2020款 120i M运动套装",
+                "trackingPrice": 85500,
+                "storeId": 2037948,
+                "imageLeft": [
+                    {
+                        "iconHeight": 36,
+                        "iconWidth": 36,
+                        "icon": "https://image1.guazistatic.com/qn23041215170924da86e1cea4929dfe14243c27b1ec6f.gif",
+                        "customAttrMap": {
+                            "backgroundImageWidth": "\"112px\""
+                        },
+                        "trackerKey": "63-1",
+                        "background": "https://image1.guazistatic.com/qn2304121517031cc9445682876b16e43d58f3c2a3934d.png",
+                        "id": 174,
+                        "text": "直播带看:直播中-首页"
+                    }
+                ],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.7\",\"carscores\":\"4.7\",\"carid\":\"137244215\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "宝骏510 2017款 1.5L 手动豪华型",
+                "clue_id": "135444717",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7964x7190d4d19ff74170a7485191532e2e1e1716870652.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "3.19万",
+                "priceObj": {
+                    "priceString": "3.19万",
+                    "value": "3.19",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.32万",
+                "firstPay": {
+                    "priceString": "首付0.32万",
+                    "value": "0.32",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=135444717&hideTitlebar=1&h5Ready=1",
+                "name": "宝骏510 2017款 1.5L 手动豪华型",
+                "trackingPrice": 31900,
+                "storeId": 2054746,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1713927887f2f5d4bb80d44262896b8296f5ba08ee1066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 470,
+                        "text": "官方评分4.6"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.6\",\"carscores\":\"4.6\",\"carid\":\"135444717\",\"costscores\":\"4.1\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "大众 2019款 朗逸启航 1.5L 自动风尚版 国VI",
+                "clue_id": "136221739",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7964x78ed524ad69b48f08b4124302e03bf651719231301.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "6.27万",
+                "priceObj": {
+                    "priceString": "6.27万",
+                    "value": "6.27",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.63万",
+                "firstPay": {
+                    "priceString": "首付0.63万",
+                    "value": "0.63",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136221739&hideTitlebar=1&h5Ready=1",
+                "name": "大众 2019款 朗逸启航 1.5L 自动风尚版 国VI",
+                "trackingPrice": 62700,
+                "storeId": 2058289,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄网约优选口碑榜第1名"
+                    }
+                ],
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp1066x33da2a252a2049aca80e86fe43bd9fe51714285651.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 472,
+                        "text": "官方评分4.9"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.5\",\"carscores\":\"4.9\",\"carid\":\"136221739\",\"costscores\":\"5.0\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "本田 雅阁 2016款 2.0L 舒适版",
+                "clue_id": "137432598",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xc7a1380c9146457281b72f654d4fd6ae1722580233.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "8.50万",
+                "priceObj": {
+                    "priceString": "8.50万",
+                    "value": "8.50",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.85万",
+                "firstPay": {
+                    "priceString": "首付0.85万",
+                    "value": "0.85",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=137432598&hideTitlebar=1&h5Ready=1",
+                "name": "本田 雅阁 2016款 2.0L 舒适版",
+                "trackingPrice": 85000,
+                "storeId": 6074,
+                "rank_list": [
+                    {
+                        "type": 1,
+                        "title": "石家庄网约优选保值榜第3名"
+                    }
+                ],
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17129029326b5a008a26e341ec8e74d9f5b1d3bda51066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 465,
+                        "text": "官方评分4.1"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"4.2\",\"carscores\":\"4.1\",\"carid\":\"137432598\",\"costscores\":\"4.1\"}"
+            },
+            {
+                "cellType": "car",
+                "isAllowDel": 1,
+                "isShow": 1,
+                "title": "奔驰CLA 2018款 CLA 200 时尚型",
+                "clue_id": "136858659",
+                "thumb_img": "https://image-pub.guazistatic.com/qnbdp7206xa4cc694eca8d48bbab3bb52ebf1618861721375903.jpg?x-bce-process=image/quality,q_99/resize,m_fill,w_240,h_160",
+                "price": "9.49万",
+                "priceObj": {
+                    "priceString": "9.49万",
+                    "value": "9.49",
+                    "unit": "万"
+                },
+                "first_pay": "首付0.95万",
+                "firstPay": {
+                    "priceString": "首付0.95万",
+                    "value": "0.95",
+                    "unit": "万"
+                },
+                "url": "https://m.guazi.com/detail?clueId=136858659&hideTitlebar=1&h5Ready=1",
+                "name": "奔驰CLA 2018款 CLA 200 时尚型",
+                "trackingPrice": 94900,
+                "storeId": 2020982,
+                "imageLeft": [],
+                "beltTag": [],
+                "titleTag": [
+                    {
+                        "iconHeight": 28,
+                        "iconWidth": 120,
+                        "icon": "https://image-pub.guazistatic.com/qnbdp17139278873777dfb8e7dd42a2871342824ef1a9f11066.png",
+                        "customAttrMap": {},
+                        "trackerKey": "7-1",
+                        "id": 471,
+                        "text": "官方评分4.7"
+                    }
+                ],
+                "tracking": "{\"conditionscores\":\"3.8\",\"carscores\":\"4.7\",\"carid\":\"136858659\",\"costscores\":\"4.9\"}"
+            }
+        ]);
+                return {
+                    list1
+                }
+            },
+            template: `<waterfall :list="list1"  v-slot="{data, dataIndex}">
+            <div class="card-item">
+                <div class="card-item__itemsbox card-item__car">
+                    <div class="card-item__car-img-wrap">
+                        <img :src="data.thumb_img" alt="" class="card-item__car-img">
+                    </div>
+                    <div class="card-item__car-box">
+                        <div class="card-item__car-title">{{ data.title }}</div>
+                    </div>
+                </div>
+                
+            </div>
+        </waterfall>`
+        })
+        app.component('waterfall',{
+            props:{
+                col: {
+                    type: [String, Number],
+                    default: 2
+                },
+                // 行间距
+                colSpacing: {
+                    type: [String, Number],
+                    default: 10
+                },
+                // 列间距
+                rowSpacing: {
+                    type: [String, Number],
+                    default: 10
+                },
+                list: {
+                    type: Array,
+                    default: () => []
+                }
+            },
+            setup(props){
+                const itemRefs = ref([]);
+                const pHeight = ref(0);
+                const cItemStyle = ref([]);
+                const homeWaterfallsRef = ref(null);
+                const colWidth = ref(0);
+                const colSpacingRef = ref(0);
+                const rowSpacingRef = ref(0);
+                const itemKey = ref(0);
+                let colHeightArr = null;
+                let lastIndex = 0;
+                const colRef = computed(() => "string" == typeof props.col ? parseInt(props.col) : Math.floor(props.col));
+                let firstFlag = !1;
+                const N = () => {
+                    console.log(1);
+                    if(!firstFlag){
+                        const { width: homeWaterfallsWith } = DOMRectFuc(homeWaterfallsRef.value);
+                        colSpacingRef.value = co(props.colSpacing),
+                        rowSpacingRef.value = co(props.rowSpacing);
+                        // （父容器 - （列数-1）* 列间距）/ 列数 = 列宽
+                        colWidth.value = (homeWaterfallsWith - (colRef.value - 1) * colSpacingRef.value) / colRef.value;
+                        firstFlag = !0;
+                    }
+                    // domItemCacheArr是dom,通过slice截取,只获取当前传过来的值,不在处理旧数据
+                    let domItemCacheArr = [];
+                    const domItemArr = unref(itemRefs.value);
+                    const domItemArrLen = domItemArr.length;
+                    if(domItemArrLen >= lastIndex){
+                        // dom长度大于s则截取剩余部分
+                        domItemCacheArr = domItemArr.slice(lastIndex)
+                    }
+                    lastIndex = domItemArrLen;
+                    domItemCacheArr.forEach(item => {
+                        // 每个item的高度
+                        const { height: itemHeight } = DOMRectFuc(item)
+                        // 列高数组取最小值
+                            , minColHieght = Math.min(...colHeightArr)
+                        // 列高数组最小值的下标(第几列，从0开始表示第一列)
+                            , minColIndex = colHeightArr.indexOf(Math.min(...colHeightArr));
+                        // 第几列(0,1,2...) * 列宽 + 列间距 * 第几列(0,1,2...)
+                        let DOMleft = minColIndex * colWidth.value + colSpacingRef.value * minColIndex;
+                        cItemStyle.value.push({
+                            left: `${DOMleft}px`,
+                            top: `${minColHieght}px`,
+                            width: `${colWidth.value}px`,
+                            marginBottom: `${rowSpacingRef.value}px`
+                        });
+                        // 从新计算当前列高 = 旧的+item高度+底部间距（行间距）
+                        colHeightArr[minColIndex] += itemHeight + rowSpacingRef.value;
+                    });
+                    // 从新赋值父容器高度
+                    pHeight.value = Math.max(...colHeightArr)
+                }
+                const z = () => {
+                    console.log(111111)
+                    // 初始列数组的高度，默认0
+                    colHeightArr = Array(colRef.value).fill(0),
+                    // 初始父容器高度，默认0
+                    pHeight.value = 0,
+                    // 每个item的位置信息
+                    cItemStyle.value = [],
+                    // 截取后数据源长度
+                    lastIndex = 0
+                }
+                watch(() => props.list.length, (newVal, oldVal) => {
+                    // 监听list长度
+                    if (newVal) {
+                        nextTick(() => {
+                            N()
+                        })
+                    } else {
+                        console.log('z1')
+                        z()
+                    }
+                }, {
+                    immediate: !0
+                })
+                onMounted(() => {
+                    itemKey.value = Date.now();
+                    console.log('z2')
+                    z();
+                    nextTick(()=>{
+                        N()
+                    })
+                })
+                return {
+                    cItemStyle,
+                    list:props.list,
+                    pHeight,
+                    normalizeStyle
+                }
+            },
+            template: `<div ref="homeWaterfallsRef" class="home-waterfalls" :style="{height:pHeight+'px'}">
+                <div v-for="(item, index) in list" :key="itemKey + index" class="waterfall"
+                    :style="normalizeStyle(cItemStyle[index])" :ref="(e)=>{
+                        itemRefs[index] = e
+                    }">
+                    <slot :data="item" :dataIndex="index"></slot>
+                </div>
+            </div>`
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
+
+<script>
+
+
+</script>
